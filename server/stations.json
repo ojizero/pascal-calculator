@@ -1,0 +1,17 @@
+{
+	"1": {
+		"id:": 1,
+		"name": "Nablus",
+		"Dest": "Ramallah",
+		"lat": 13.9837,
+		"lon": -54.93738,
+		"max_speed": 90
+	},
+	"2": {
+		"id:": 2,
+		"name": "Ramallah,Nablus",
+		"lat": 15.9837,
+		"lon": -55.93738,
+		"max_speed": 90
+	}
+}
