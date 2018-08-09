@@ -21,13 +21,13 @@
 		"car_id": 3,
 		"lat": 12.9837,
 		"lon": -51.93738,
-		"speed": 5,
+		"speed": 25,
 		"timestamp": 1533831419
 	}, {
 		"car_id": 4,
 		"lat": 10.9837,
 		"lon": -45.93738,
-		"speed": 0,
+		"speed": 25,
 		"timestamp": 1533831419
 	}
 ]

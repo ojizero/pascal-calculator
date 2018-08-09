@@ -87,8 +87,26 @@ const getStationTraficCondition = (stationId) => {
 	return avg / stations[stationId].max_speed
 }
 
-// console.log(calculateCarTimeToStation(1, 1))
-console.log(getStationTraficCondition(1))
+const getStations = _ => {
+	return stations
+}
+
+const getStationData = stationId => {
+	return Object.values(cars)
+	.filter(car => {
+		return car.stations_ids.includes(stationId)
+	})
+	.map(car => {
+		console.log(car)
+		car.distanceBetweenCarAndStation = distanceBetweenCarAndStation(car.id, stationId)
+		car.stationTraficCondition = getStationTraficCondition(stationId)
+		car.isInStation = isTheCarInStation(car.id, stationId)
+		car.CarTimeToStation = calculateCarTimeToStation(car.id, stationId)
+
+		return car
+	})
+}
+
 
 module.exports  = {
 	getCarLastUpdate,
@@ -96,5 +114,7 @@ module.exports  = {
 	isTheCarInStation,
 	calculateCarTimeToStation,
 	distanceBetweenTwoPoint,
-	getStationTraficCondition
+	getStationTraficCondition,
+	getStations,
+	getStationData
 }
