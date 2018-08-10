@@ -45,12 +45,12 @@ const isTheCarInStation = (carId, stationId) => {
 }
 
 const distanceBetweenTwoPoint = (start, end) => {
-	return geodist(start, end, {'unit': 'meters'})
+	return geodist(start, end, {'unit': 'meters'}) // todo: meters
 }
 
 const calculateCarTimeToStation = (carId, stationId) => {
 	// Time   = Distance/Speed
-	// Hourse = `KM` / `KM/H`
+	// Hours  = `KM` / `KM/H`
 	let lastUpdate = getCarLastUpdate(carId)
 
 	if (! lastUpdate) return null
@@ -99,14 +99,34 @@ const getStationData = stationId => {
 	.map(car => {
 		console.log(car)
 		car.distanceBetweenCarAndStation = distanceBetweenCarAndStation(car.id, stationId)
-		car.stationTraficCondition = getStationTraficCondition(stationId)
-		car.isInStation = isTheCarInStation(car.id, stationId)
-		car.CarTimeToStation = calculateCarTimeToStation(car.id, stationId)
+		car.traffic = getStationTraficCondition(stationId)
+		car.status = isTheCarInStation(car.id, stationId) ? 'Boarding' : 'Departed'
+
+		let carTimeToStationInHours = calculateCarTimeToStation(car.id, stationId)
+    	car.eta = (carTimeToStationInHours * 60) + " minutes"
+
+    	// var date = new Date().getTime()
+		// date += (carTimeToStationInHours * 60 * 60 * 1000)
+		// date = new Date(date)
+
+		// car.eta = ("0" + date.getHours()).slice(-2) + ':' +
+    	// ("0" + date.getMinutes()).slice(-2);
+
+		// Mocked data
+    	car.time = "20 min"
+    	car.load = Math.floor(Math.random() * Math.floor(7))
+    	const weathers = ['clear-day', 'partly-cloudy-night', 'rain', 'fog', 'snow']
+    	car.weather = weathers[Math.floor(Math.random()*weathers.length)]
 
 		return car
 	})
 }
 
+const carDepartureTime = carId => {
+
+}
+
+console.log(distanceBetweenCarAndStation(1,1))
 
 module.exports  = {
 	getCarLastUpdate,
